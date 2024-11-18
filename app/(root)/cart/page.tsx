@@ -18,7 +18,14 @@ const Cart = () => {
     0
   );
   // làm tròn tổng tiền đến 2 chữ số thập phân.
-  const totalRounded = parseFloat(total.toFixed(2));
+  // const totalRounded = parseFloat(total.toFixed(0));
+  // <span className="CurrencyAmount">const totalRounded = Math.round(parseFloat(total.toFixed(0)) *100 &nbsp;₫)</span>; // làm tròn để tránh lỗi
+  // <span class="CurrencyAmount">2.040.000&nbsp;₫</span>
+  const totalRounded = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  }).format(Math.round(total));
+
 
   // customer:thông tin người dùng(clerkId,email,name) để truyền vào khi thực hiện thanh toán.
   const customer = {
@@ -52,15 +59,38 @@ const Cart = () => {
     // tiêu đề "Shopping Cart" và đường phân cách.
     <div className="flex gap-20 py-16 px-10 max-lg:flex-col max-sm:px-3">
       <div className="w-2/3 max-lg:w-full">
-        <p className="text-heading3-bold">Shopping Cart</p>
+        <p className="text-heading3-bold">Giỏ hàng</p>
         <hr className="my-6" />
 
         {/* Nếu giỏ hàng trống, hiển thị thông báo “No item in cart.” */}
         {cart.cartItems.length === 0 ? (
-          <p className="text-body-bold">No item in cart</p>
+          <p className="text-body-bold">Không có sản phẩm nào trong giỏ hàng</p>
         ) : (
 
           // Nếu có sản phẩm, hiển thị danh sách cartItems(Hình ảnh, tên, màu, kích thước (nếu có), và giá sản phẩm)
+          // <div>
+          //   {cart.cartItems.map((cartItem) => (
+          //     <div className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between">
+          //       <div className="flex items-center">
+          //         <Image
+          //           src={cartItem.item.media[0]}
+          //           width={100}
+          //           height={100}
+          //           className="rounded-lg w-32 h-32 object-cover"
+          //           alt="product"
+          //         />
+          //         <div className="flex flex-col gap-3 ml-4">
+          //           <p className="text-body-bold">{cartItem.item.title}</p>
+          //           {cartItem.color && (
+          //             <p className="text-small-medium">{cartItem.color}</p>
+          //           )}
+          //           {cartItem.size && (
+          //             <p className="text-small-medium">{cartItem.size}</p>
+          //           )}
+          //           <p className="text-small-medium">{cartItem.item.price}đ</p>
+          //         </div>
+          //       </div>
+
           <div>
             {cart.cartItems.map((cartItem) => (
               <div className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between">
@@ -80,7 +110,13 @@ const Cart = () => {
                     {cartItem.size && (
                       <p className="text-small-medium">{cartItem.size}</p>
                     )}
-                    <p className="text-small-medium">{cartItem.item.price}đ</p>
+                    {/* Định dạng giá sản phẩm thành tiền Việt Nam Đồng */}
+                    <p className="text-small-medium">
+                      {new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                      }).format(cartItem.item.price)}
+                    </p>
                   </div>
                 </div>
 
@@ -118,7 +154,7 @@ const Cart = () => {
         </p>
         <div className="flex justify-between text-body-semibold">
           <span>Tổng số tiền</span>
-          <span>{totalRounded}đ</span>
+          <span>{totalRounded}</span>
         </div>
 
         {/* Nút "Proceed to Checkout" cho phép người dùng chuyển đến trang thanh toán. */}
@@ -134,3 +170,7 @@ const Cart = () => {
 };
 
 export default Cart;
+
+
+
+

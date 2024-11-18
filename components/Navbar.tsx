@@ -29,9 +29,9 @@ const Navbar = () => {
 
       {/* Menu điều hướng(Home, Wishlist, Orders) */}
       <div className="flex gap-4 text-base-bold max-lg:hidden">
-        <Link href="/" className={`hover:text-red-1 ${pathname === "/" && "text-red-1"}`} >Home</Link>
-        <Link href={user ? "/wishlist" : "/sign-in"} className={`hover:text-red-1 ${pathname === "/wishlist" && "text-red-1"}`}>Wishlist</Link>
-        <Link href={user ? "/orders" : "/sign-in"} className={`hover:text-red-1 ${pathname === "/orders" && "text-red-1"}`} >Orders</Link>
+        <Link href="/" className={`hover:text-red-1 ${pathname === "/" && "text-red-1"}`} >Trang chủ</Link>
+        <Link href={user ? "/wishlist" : "/sign-in"} className={`hover:text-red-1 ${pathname === "/wishlist" && "text-red-1"}`}>Yêu thích</Link>
+        <Link href={user ? "/orders" : "/sign-in"} className={`hover:text-red-1 ${pathname === "/orders" && "text-red-1"}`} >Đơn hàng</Link>
       </div>
 
       {/* Search */}
@@ -57,7 +57,7 @@ const Navbar = () => {
           className="flex items-center gap-3 border rounded-lg px-2 py-1 hover:bg-black hover:text-white max-md:hidden"
         >
           <ShoppingCart />
-          <p className="text-base-bold">Cart ({cart.cartItems.length})</p>
+          <p className="text-base-bold">Giỏ hàng ({cart.cartItems.length})</p>
         </Link>
 
         {/* Menu icon (Menu Thả Xuống):liên kết (Home, Wishlist, Orders, Cart).  */}
@@ -69,19 +69,19 @@ const Navbar = () => {
         {dropdownMenu && (
           <div className="absolute top-12 right-5 flex flex-col gap-4 p-3 rounded-lg border bg-white text-base-bold lg:hidden">
             <Link href="/" className="hover:text-red-1">
-              Home
+              Trang chủ
             </Link>
             <Link
               href={user ? "/wishlist" : "/sign-in"}
               className="hover:text-red-1"
             >
-              Wishlist
+              Yêu thích
             </Link>
             <Link
               href={user ? "/orders" : "/sign-in"}
               className="hover:text-red-1"
             >
-              Orders
+              Đơn hàng
             </Link>
             <Link
               href="/cart"

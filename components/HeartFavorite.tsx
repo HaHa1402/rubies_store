@@ -35,29 +35,25 @@ const HeartFavorite = ({ product, updateSignedInUser }: HeartFavoriteProps) => {
     }
   }, [user]);
 
-const handleLike = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  e.preventDefault();
-  try {
-    if (!user) {
-      router.push("/sign-in");
-      return;
-    } else {
-      const res = await fetch("/api/users/wishlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId: product._id }),
-      });
-      if (!res.ok) {
-        throw new Error(`Failed to update wishlist: ${res.statusText}`);
+  const handleLike = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    try {
+      if (!user) {
+        router.push("/sign-in");
+        return;
+      } else {
+        const res = await fetch("/api/users/wishlist", {
+          method: "POST",
+          body: JSON.stringify({ productId: product._id }),
+        });
+        const updatedUser = await res.json();
+        setIsLiked(updatedUser.wishlist.includes(product._id));
+        updateSignedInUser && updateSignedInUser(updatedUser);
       }
-      const updatedUser = await res.json();
-      setIsLiked(updatedUser.wishlist.includes(product._id));
-      updateSignedInUser && updateSignedInUser(updatedUser);
+    } catch (err) {
+      console.log("[wishlist_POST]", err);
     }
-  } catch (err) {
-    console.log("[wishlist_POST]", err);
-  }
-};
+  };
 
   return (
     <button onClick={handleLike}>

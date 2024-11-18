@@ -22,8 +22,9 @@ const CollectionDetails = async ({
 
       />
       {/* <p className="text-heading1-bold">{collectionDetails.title}</p> */}
-      <h1 className=" text-heading1-bold font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-red-2 from-sky-400">
+      <h1 className="text-heading1-bold font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl 
+               font-sans tracking-wide leading-tight text-shadow-lg">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r to-red-400 from-sky-500">
           {collectionDetails.title}
         </span>
       </h1>
