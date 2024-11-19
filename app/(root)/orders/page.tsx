@@ -120,7 +120,7 @@ const Orders = async () => {
             <div className="flex gap-20 max-md:flex-col max-md:gap-3">
               <p className="text-base-bold">ID Đơn hàng: {order._id}</p>
               <p className="text-base-bold">
-                Tổng số tiền: {formatCurrency(order.totalAmount)} {/* Hiển thị tổng số tiền */}
+                Tổng số tiền: {formatCurrency(order.totalAmount * 100)}
               </p>
             </div>
 
@@ -134,6 +134,7 @@ const Orders = async () => {
                     height={100}
                     className="w-32 h-32 object-cover rounded-lg"
                   />
+                  
                   <div className="flex flex-col justify-between">
                     <p className="text-small-medium">
                       Tiêu đề:{" "}
@@ -141,6 +142,7 @@ const Orders = async () => {
                         {orderItem.product.title}
                       </span>
                     </p>
+
                     {orderItem.color && (
                       <p className="text-small-medium">
                         Màu sắc:{" "}
@@ -149,6 +151,7 @@ const Orders = async () => {
                         </span>
                       </p>
                     )}
+
                     {orderItem.size && (
                       <p className="text-small-medium">
                         Size:{" "}
@@ -157,12 +160,14 @@ const Orders = async () => {
                         </span>
                       </p>
                     )}
+
                     <p className="text-small-medium">
                       Giá sản phẩm:{" "}
                       <span className="text-small-bold">
                         {formatCurrency(orderItem.product.price)} {/* Hiển thị giá sản phẩm */}
                       </span>
                     </p>
+                    
                     <p className="text-small-medium">
                       Số lượng:{" "}
                       <span className="text-small-bold">{orderItem.quantity}</span>
