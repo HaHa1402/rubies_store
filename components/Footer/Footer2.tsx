@@ -140,8 +140,8 @@ const Footer = () => {
             </div>
             <div className="footer-copyright">
                 <div className="container">
-                    <p>Copyright © 2024 <a href="https://torano.vn"> Đồ Án Phần Mềm </a>.
-                        <a target="_blank" href="https://www.haravan.com" rel="noreferrer">Powered by Nhóm 20</a>
+                    <p>Copyright © 2024 <a href="https://torano.vn">  </a>.
+                        <a target="_blank" href="https://www.haravan.com" rel="noreferrer"></a>
                     </p>
                 </div>
             </div>
